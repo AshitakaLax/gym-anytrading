@@ -1,0 +1,8 @@
+ipython
+ipykernel
+pandas
+numpy
+gym
+quantstats
+stable-baselines3
+matplotlib

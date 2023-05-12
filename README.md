@@ -51,7 +51,7 @@ As I noticed earlier, now it's time to introduce the three environments. Before 
 In the three following subsections, I will introduce our trading environments and in the next section, some IPython examples will be mentioned and briefly explained.
 
 ### TradingEnv
-TradingEnv is an abstract class which inherits `gym.Env`. This class aims to provide a general-purpose environment for all kinds of trading markets. Here I explain its public properties and methods. But feel free to take a look at the complete [source code](https://github.com/AminHP/gym-anytrading/blob/master/gym_anytrading/envs/trading_env.py).
+TradingEnv is an abstract class which inherits `gym.Env`. This class aims to provide a general-purpose environment for all kinds of trading markets. Here I explain its public properties and methods. But feel free to take a look at the complete [source code](https://github.com/AminHP/gym-anytrading/blob/master/gym_intratrading/envs/trading_env.py).
 
 * Properties:
 > `df`: An abbreviation for **DataFrame**. It's a **pandas'** DataFrame which contains your dataset and is passed in the class' constructor.
@@ -93,7 +93,7 @@ TradingEnv is an abstract class which inherits `gym.Env`. This class aims to pro
 > `max_possible_profit`: The maximum possible profit that an RL agent can obtain regardless of trade fees.
 
 ### ForexEnv
-This is a concrete class which inherits TradingEnv and implements its abstract methods. Also, it has some specific properties for the *FOREX* market. For more information refer to the [source code](https://github.com/AminHP/gym-anytrading/blob/master/gym_anytrading/envs/forex_env.py).
+This is a concrete class which inherits TradingEnv and implements its abstract methods. Also, it has some specific properties for the *FOREX* market. For more information refer to the [source code](https://github.com/AminHP/gym-anytrading/blob/master/gym_intratrading/envs/forex_env.py).
 
 * Properties:
 > `frame_bound`: A tuple which specifies the start and end of `df`. It is passed in the class' constructor.
@@ -104,7 +104,7 @@ This is a concrete class which inherits TradingEnv and implements its abstract m
 
 
 ### StocksEnv
-Same as ForexEnv but for the *Stock* market. For more information refer to the [source code](https://github.com/AminHP/gym-anytrading/blob/master/gym_anytrading/envs/stocks_env.py).
+Same as ForexEnv but for the *Stock* market. For more information refer to the [source code](https://github.com/AminHP/gym-anytrading/blob/master/gym_intratrading/envs/stocks_env.py).
 
 * Properties:
 > `frame_bound`: A tuple which specifies the start and end of `df`. It is passed in the class' constructor.
@@ -123,7 +123,7 @@ Besides, you can create your own customized environment by extending TradingEnv 
 
 ```python
 import gym
-import gym_anytrading
+import gym_intratrading
 
 env = gym.make('forex-v0')
 # env = gym.make('stocks-v0')
@@ -133,11 +133,11 @@ env = gym.make('forex-v0')
 - This will create the default environment. You can change any parameters such as dataset, frame_bound, etc.
 
 ### Create an environment with custom parameters
-I put two default datasets for [*FOREX*](https://github.com/AminHP/gym-anytrading/blob/master/gym_anytrading/datasets/data/FOREX_EURUSD_1H_ASK.csv) and [*Stocks*](https://github.com/AminHP/gym-anytrading/blob/master/gym_anytrading/datasets/data/STOCKS_GOOGL.csv) but you can use your own.
+I put two default datasets for [*FOREX*](https://github.com/AminHP/gym-anytrading/blob/master/gym_intratrading/datasets/data/FOREX_EURUSD_1H_ASK.csv) and [*Stocks*](https://github.com/AminHP/gym-anytrading/blob/master/gym_intratrading/datasets/data/STOCKS_GOOGL.csv) but you can use your own.
 
 
 ```python
-from gym_anytrading.datasets import FOREX_EURUSD_1H_ASK, STOCKS_GOOGL
+from gym_intratrading.datasets import FOREX_EURUSD_1H_ASK, STOCKS_GOOGL
 
 custom_env = gym.make('forex-v0',
                df = FOREX_EURUSD_1H_ASK,
@@ -210,9 +210,9 @@ env.render()
 
 ```python
 import gym
-import gym_anytrading
-from gym_anytrading.envs import TradingEnv, ForexEnv, StocksEnv, Actions, Positions 
-from gym_anytrading.datasets import FOREX_EURUSD_1H_ASK, STOCKS_GOOGL
+import gym_intratrading
+from gym_intratrading.envs import TradingEnv, ForexEnv, StocksEnv, Actions, Positions 
+from gym_intratrading.datasets import FOREX_EURUSD_1H_ASK, STOCKS_GOOGL
 import matplotlib.pyplot as plt
 
 env = gym.make('forex-v0', frame_bound=(50, 100), window_size=10)
@@ -298,4 +298,4 @@ env = MyStocksEnv(prices, signal_features, df=STOCKS_GOOGL, window_size=30, fram
 
 ## Related Projects
 
-* A more complicated version of `anytrading` with five actions, three positions, and a better reward function is developed in the [DI-engine](https://github.com/opendilab/DI-engine/tree/main/dizoo/gym_anytrading) project. It is a mid-level tool (somewhere between `anytrading` and `mtsim`), appropriate for semi-experts. More information and documentation can be found [here](https://github.com/opendilab/DI-engine/tree/main/dizoo/gym_anytrading/envs).
+* A more complicated version of `anytrading` with five actions, three positions, and a better reward function is developed in the [DI-engine](https://github.com/opendilab/DI-engine/tree/main/dizoo/gym_intratrading) project. It is a mid-level tool (somewhere between `anytrading` and `mtsim`), appropriate for semi-experts. More information and documentation can be found [here](https://github.com/opendilab/DI-engine/tree/main/dizoo/gym_intratrading/envs).
