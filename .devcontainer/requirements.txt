@@ -1,4 +1,9 @@
-gym==0.26.2
+#gym==0.26.2
+gymnasium==0.28.1
+tf-agents[reverb]~=0.16.0
+tensorflow~=2.12.0
+pyvirtualdisplay
+dm-reverb
 stable-baselines3[extra_no_roms,tests,docs]>=2.0.0a4
 sb3-contrib>=2.0.0a4
 #box2d-py==2.3.8
@@ -20,6 +25,7 @@ tqdm
 rich
 moviepy
 ruff
+quantstats
 
 # ipython
 # ipykernel
@@ -29,3 +35,5 @@ ruff
 # quantstats
 # stable-baselines3[extra]
 # matplotlib
+
+xvfbwrapper
